@@ -31,13 +31,17 @@ class ListLanguageLines extends ListRecords
     protected function getActions(): array
     {
         return [
-            Action::make('quick-translate')
-                ->icon('heroicon-o-bolt')
-                ->label(__('translation-manager::translations.quick-translate'))
-                ->url(LanguageLineResource::getUrl('quick-translate')),
+
+
+                Action::make('quick-translate')
+                    ->icon('heroicon-o-bolt')
+                    ->label(__('translation-manager::translations.quick-translate'))
+                    ->url(LanguageLineResource::getUrl('quick-translate'))
+                    ->hidden(fn()=>!config('translation-manager.quick_translate_button_registration')),
 
             SynchronizeAction::make('synchronize')
-                ->action('synchronize'),
+                ->action('synchronize')
+                ->hidden(fn()=>!config('translation-manager.synchronize_button_registration')),
         ];
     }
 }
