@@ -3,6 +3,7 @@
 namespace Kenepa\TranslationManager;
 
 use Filament\Contracts\Plugin;
+use Filament\Facades\Filament;
 use Filament\Panel;
 use Illuminate\View\View;
 use Kenepa\TranslationManager\Http\Middleware\SetLanguage;
@@ -23,6 +24,8 @@ class TranslationManagerPlugin implements Plugin
 
     public function register(Panel $panel): void
     {
+        //ray($panel->getId());
+
         $panel
             ->resources([
                 LanguageLineResource::class,
@@ -32,21 +35,31 @@ class TranslationManagerPlugin implements Plugin
             ]);
 
         if (config('translation-manager.language_switcher')) {
-            $panel->renderHook(
-                config('translation-manager.language_switcher_render_hook'),
-                fn (): View => $this->getLanguageSwitcherView()
-            );
 
-            $panel->authMiddleware([
-                SetLanguage::class,
-            ]);
+
+            if (!in_array(
+                $panel->getId(),
+                config('translation-manager.dont_register_language_switcher_on_panel_ids')
+            )) {
+                $panel->renderHook(
+                    config('translation-manager.language_switcher_render_hook'),
+                    fn (): View => $this->getLanguageSwitcherView()
+                );
+
+                $panel->authMiddleware([
+                    SetLanguage::class,
+                ]);
+            }
+
+
         }
 
     }
 
     public function boot(Panel $panel): void
     {
-        //
+        // ray(Filament::getCurrentPanel()->getId());
+
     }
 
     /**
