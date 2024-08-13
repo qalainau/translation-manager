@@ -58,12 +58,14 @@ class LanguageLineResource extends Resource
                     ->prefixIcon('heroicon-o-tag')
                     ->disabled(config('translation-manager.disable_key_and_group_editing'))
                     ->label(__('translation-manager::translations.group'))
+                    ->readOnly()
                     ->required(),
 
                 TextInput::make('key')
                     ->prefixIcon('heroicon-o-key')
                     ->disabled(config('translation-manager.disable_key_and_group_editing'))
                     ->label(__('translation-manager::translations.key'))
+                    ->readOnly()
                     ->required(),
 
                 ViewField::make('preview')
