@@ -155,6 +155,10 @@ class LanguageLineResource extends Resource
         ];
     }
 
+    public static function canAccess(): bool
+    {
+        return  Gate::allows('can-access-translation-manager');
+    }
     public static function canViewAny(): bool
     {
         return static::shouldRegisterOnPanel() ? Gate::allows('use-translation-manager') : false;
