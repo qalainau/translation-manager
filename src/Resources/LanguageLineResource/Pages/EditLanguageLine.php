@@ -52,7 +52,8 @@ class EditLanguageLine extends EditRecord
                 ray($this->text_ja)->blue();
 
             //$this->updateTranslate($this->record->product_name,$this->record->id,'\App\Models\Product','product_name');
-              $this->updateTranslate($this->text_ja,$this->record->id,'Spatie\TranslationLoader\LanguageLine','text');
+         //     $this->updateTranslate($this->text_ja,$this->record->id,'Spatie\TranslationLoader\LanguageLine','text');
+            $this->updateTranslate($this->text_ja,$this->record->id,'\App\Models\LanguageLine','text');
                // $reload = true;
 
         }
