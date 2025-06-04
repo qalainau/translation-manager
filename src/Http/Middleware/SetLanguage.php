@@ -18,7 +18,7 @@ class SetLanguage
     {
 
 
-        if (! $request->hasSession()) {
+        if (! $request->hasSession() ||   !$request->session()->get('language')) {
             $siteCode = $this->extractSiteKeyFromUrl($request);
 
             //サイトごとにデフォルト言語を設定する
