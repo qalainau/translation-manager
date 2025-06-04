@@ -22,7 +22,7 @@ class SetLanguage
             $siteCode = $this->extractSiteKeyFromUrl($request);
 
             //サイトごとにデフォルト言語を設定する
-            $default_locale = 'en';
+            $default_locale = 'ja';
             if ($siteCode) {
                 $default_locale = $this->getDefaultLocaleFromDatabase($siteCode);
             }
@@ -92,6 +92,6 @@ class SetLanguage
         }
 
         // デフォルト値を返す
-        return 'en';
+        return 'ja';
     }
 }
